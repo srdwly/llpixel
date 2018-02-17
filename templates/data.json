@@ -40,6 +40,13 @@
     "y": 2544,
     "width": 149,
     "height": 300
+  },
+  "maki_portrait": {
+    "name": "maki_portrait.png",
+    "x": 5211,
+    "y": 2632,
+    "width": 105,
+    "height": 130
   }
   
 }
