@@ -12,6 +12,13 @@
     "y": -259,
     "width": 258,
     "height": 161
+  },
+  "nico": {
+    "name": "nicofull.png",
+    "x": 4853,
+    "y": 2333,
+    "width": 156,
+    "height": 264
   }
   
 }
