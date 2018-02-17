@@ -75,6 +75,13 @@
     "y": 2271,
     "width": 202,
     "height": 358
+  },
+  "mlp_gift": {
+    "name": "mlp_gift.png",
+    "x": 4923,
+    "y": 2625,
+    "width": 78,
+    "height": 120
   }
   
 }
