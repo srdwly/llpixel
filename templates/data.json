@@ -82,6 +82,13 @@
     "y": 2625,
     "width": 78,
     "height": 120
+  },
+  "gang": {
+    "name": "gang.png",
+    "x": 5151,
+    "y": 2222,
+    "width": 242,
+    "height": 47
   }
   
 }
