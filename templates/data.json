@@ -68,6 +68,13 @@
     "y": 2329,
     "width": 182,
     "height": 268
+  },
+  "base_center": {
+    "name": "base_center.png",
+    "x": 5164,
+    "y": 2271,
+    "width": 200,
+    "height": 358
   }
   
 }
