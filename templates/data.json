@@ -61,6 +61,13 @@
     "y": 2329,
     "width": 164,
     "height": 268
+  },
+  "maki_full": {
+    "name": "maki_full.png",
+    "x": 5009,
+    "y": 2329,
+    "width": 182,
+    "height": 268
   }
   
 }
