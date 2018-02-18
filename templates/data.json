@@ -103,6 +103,13 @@
     "y": 2644,
     "width": 103,
     "height": 78
+  },
+  "wata_art_1": {
+    "name": "wata_art_1.png",
+    "x": 6965,
+    "y": 2899,
+    "width": 399,
+    "height": 234
   }
   
 }
