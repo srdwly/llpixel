@@ -110,6 +110,13 @@
     "y": 2899,
     "width": 399,
     "height": 234
+  },
+  "asuka_art": {
+    "name": "asuka_art.png",
+    "x": 5329,
+    "y": 2621,
+    "width": 232,
+    "height": 142
   }
   
 }
