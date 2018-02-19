@@ -124,6 +124,13 @@
     "y": 2403,
     "width": 125,
     "height": 134
+  },
+  "mega_wata_art": {
+    "name": "mega_wata_art.png",
+    "x": 6660,
+    "y": 2417,
+    "width": 292,
+    "height": 440
   }
   
 }
