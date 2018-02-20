@@ -131,6 +131,13 @@
     "y": 2417,
     "width": 292,
     "height": 440
+  },
+  "kotori_full": {
+    "name": "kotori_full.png",
+    "x": 4872,
+    "y": 2767,
+    "width": 199,
+    "height": 280
   }
   
 }
