@@ -139,12 +139,19 @@
     "width": 199,
     "height": 280
   },
-  "Monogatari ": {
+  "Monogatari": {
     "name": "Monogatari.png",
     "x": 5000,
     "y": 3300,
     "width": 906,
     "height": 500
+  },
+  "wata_art_2": {
+    "name": "wata_art_2.png",
+    "x": 1597,
+    "y": 1434,
+    "width": 376,
+    "height": 216
   }
   
 }
