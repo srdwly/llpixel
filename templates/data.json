@@ -173,6 +173,13 @@
     "y": 2417,
     "width": 325,
     "height": 440
+  },
+  "Hanayo": {
+    "name": "Hanayo.png",
+    "x": 5023,
+    "y": 1950,
+    "width": 104,
+    "height": 257
   }
   
 }
