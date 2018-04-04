@@ -180,6 +180,13 @@
     "y": 1956,
     "width": 104,
     "height": 251
+  },
+  "box_animepixel": {
+    "name": "box_animepixel.png",
+    "x": 20,
+    "y": -353,
+    "width": 75,
+    "height": 75
   }
   
 }
