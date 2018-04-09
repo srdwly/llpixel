@@ -187,6 +187,13 @@
     "y": -353,
     "width": 75,
     "height": 75
+  },
+  "LLpixelbox": {
+    "name": "LLpixelbox.png",
+    "x": -61,
+    "y": -356,
+    "width": 81,
+    "height": 81
   }
   
 }
