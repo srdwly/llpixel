@@ -194,6 +194,13 @@
     "y": -356,
     "width": 81,
     "height": 81
+  },
+  "Idols_2": {
+    "name": "idols_2.png",
+    "x": 611,
+    "y": 595,
+    "width": 155,
+    "height": 98
   }
   
 }
