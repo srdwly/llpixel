@@ -201,6 +201,13 @@
     "y": 595,
     "width": 155,
     "height": 98
+  },
+  "Zoro": {
+    "name": "zoro.png",
+    "x": 6397,
+    "y": 2169,
+    "width": 325,
+    "height": 246
   }
   
 }
