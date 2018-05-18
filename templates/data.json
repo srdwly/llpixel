@@ -208,5 +208,13 @@
     "y": 2169,
     "width": 325,
     "height": 246
+  },
+  "UR_pair": {
+    "name": "UR_pair.png",
+    "x": -10852,
+    "y": 13739,
+    "width": 720,
+    "height": 506
   }
+  
 }
