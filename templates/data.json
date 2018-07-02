@@ -176,10 +176,10 @@
   },
   "Hanayo": {
     "name": "Hanayo.png",
-    "x": 5023,
+    "x": 5009,
     "y": 1956,
-    "width": 104,
-    "height": 251
+    "width": 131,
+    "height": 266
   },
   "box_animepixel": {
     "name": "box_animepixel.png",
