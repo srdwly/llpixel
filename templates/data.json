@@ -195,12 +195,12 @@
     "width": 81,
     "height": 81
   },
-  "Idols_2": {
-    "name": "idols_2.png",
+  "rainyuu_idols": {
+    "name": "rainyuu_idols.png",
     "x": 599,
-    "y": 595,
-    "width": 167,
-    "height": 98
+    "y": 594,
+    "width": 157,
+    "height": 99
   },
   "Zoro": {
     "name": "zoro.png",
@@ -299,13 +299,6 @@
     "y": 2273,
     "width": 116,
     "height": 52
-  },
-  "smol_nozomi_def.png": {
-    "name": "smol_nozomi_def.png",
-    "x": 699,
-    "y": 585,
-    "width": 73,
-    "height": 60
   },
   "Asobi_Asobase.png": {
     "name": "Asobi_Asobase.png",
