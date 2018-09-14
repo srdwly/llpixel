@@ -313,7 +313,12 @@
     "y": 1831,
     "width": 150,
     "height": 121
+  },
+  "astolfo.png": {
+  "name": "astolfo.png",
+  "x": 6800,
+  "y": 3500,
+  "width": 500,
+  "height": 585
   }
-  
-  
 }
