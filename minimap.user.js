@@ -1,23 +1,48 @@
 // ==UserScript==
 // @name         LLpixel Minimap
-// @namespace    LLpixel
-// @version      3.2
-// @description  Pixelcanvas Minimap for LL Templates
-// @author       Some Anon
+// @namespace    http://tampermonkey.net/
+// @version      2.4 Modified for LLpixel
+// @description  Pixelcanvas Minimap for LLpixel templates
+// @author       Some Anon + Krebzonide
 // @match        https://pixelcanvas.io/*
 // @match        http://pixelcanvas.io/*
-// @homepage     https://github.com/srdwly/llpixel
+// @connect      raw.githubusercontent.com
 // @updateURL    https://raw.githubusercontent.com/srdwly/llpixel/master/minimap.user.js
 // @downloadURL  https://raw.githubusercontent.com/srdwly/llpixel/master/minimap.user.js
-// @grant        none
+// @grant        GM.xmlHttpRequest
 // ==/UserScript==
-
-//ref:https://stackoverflow.com/questions/4604663/download-single-files-from-github
-//github raw file url  template
-//https://raw.githubusercontent.com/user/repository/branch/filename
-//https://raw.githubusercontent.com/srdwly/llpixel/master/README.md
-
-window.baseTepmlateUrl = 'https://raw.githubusercontent.com/srdwly/llpixel/master';
+// This userscript is licensed under CC BY-NC-SA (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) by EMF - We are Aweseome (http://mlpixel.org/emf)
+// Licence Informations:
+// This userscript is distributed under the CC BY-NC-SA
+// You are free to copy and redistribute the material in any medium or format and to
+// remix, transform and build upon the material under the terms that you must give
+// appropriate credit, it is non-commercial and that you distribute your contributions
+// under the same license as the orginial.
+// Keep in mind that just mentioning the license and creator in the source code is not appropriate credit, because it is
+// not visible by users. Appropriate credits are putting the license, creater, disclaimer and other by the CC BY-NC-SA required
+// attributions visible under the minimap. Use the licensing informations that are already provided.
+/*
+ * DO NOT VIOLATE THE NAP!
+           _.-,=_"""--,_
+        .-" =/7"   _  .T "=.
+      ,/7  " "  ,//)`d       `.
+    ,/ "      4 ,i-/           `.
+   /         _)"_sm  =,=T"D      \
+  /         (_/"_`;\/gjo D-O      \
+ /         ,d"""O-_.._.)  P.___    \
+,        ,"            \\  bi- `\| Y.
+|       .d              b\  P'   V  |
+|\      'O               O!",       |
+|L.       \__.=_           7        |
+'  D.           )         /         '
+ \ T             \       |         /
+  \D             /       7 /      /
+   \             \     ," /"     /
+    `.            \   7'       ,'
+      "-_          `"'      ,-'
+         "-._           _.-"
+             """"---""""
+ */
 
 cssStyle = `
 #minimapbg {
@@ -80,7 +105,7 @@ cssStyle = `
   font-weight:bold;
 }
 
-#colors {
+/*#colors {
   margin-left: 0.333em !important;
 }
 
@@ -103,7 +128,7 @@ cssStyle = `
   left: initial !important;
   position: initial !important;
   display: inline-block !important;
-}`;
+}*/`;
 
 htmlFragment = `
 <div id="minimapbg">
@@ -152,7 +177,7 @@ window.addEventListener('load', function() {
   toggle_follow = true; //if minimap is following window, x_window = x and y_window = y;
   toggle_grid = true;
 
-  zoom_state = 0;
+  zoom_state = 6;
   zoom_time = 100;
   // array with all loaded template-images
   image_list = [];
@@ -221,12 +246,12 @@ window.addEventListener('load', function() {
 
   document.getElementById("zoom-plus").addEventListener('mousedown', function(e){
     e.preventDefault();
-    zoom_state = +1;
+    zoom_state = +2;
     zoom();
   }, false);
   document.getElementById("zoom-minus").addEventListener('mousedown', function(e){
     e.preventDefault();
-    zoom_state = -1;
+    zoom_state = -2;
     zoom();
   }, false);
   document.getElementById("zoom-plus").addEventListener('mouseup', function(e){ zoom_state = 0;}, false);
@@ -291,21 +316,16 @@ function addGlobalStyle(css) {
 function updateloop(){
   console.log("Updating Template List");
   // Get JSON of available templates
-  var xmlhttp = new XMLHttpRequest();
-  var url = window.baseTepmlateUrl + "/templates/data.json";
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      template_list = JSON.parse(this.responseText);
+    GM.xmlHttpRequest({
+    method: "GET",
+    url: "https://raw.githubusercontent.com/srdwly/llpixel/master/images/!data.json",
+    onload: function(response) {
+      console.log(JSON.parse(response.responseText));
+      template_list = JSON.parse(response.responseText)["Templates"];
       if(!toggle_follow)
         getCenter();
     }
-  };
-  xmlhttp.open("GET", url, true);
-  xmlhttp.send();
-
-  image_list = [];
-  loadTemplates();
-
+  });
   setTimeout(updateloop, 600000);
 }
 
@@ -354,20 +374,16 @@ function loadTemplates(){
   var y_top    = y_window*1 - minimap.height / zoomlevel / 2;
   var y_bottom = y_window*1 + minimap.height / zoomlevel / 2;
 
-  var keys = [];
-  for(var k in template_list) keys.push(k);
   needed_templates = [];
 
-  for(var i = 0; i < keys.length; i++) {
-    template = keys[i];
-    var temp_x  = template_list[template]["x"]*1;
-    var temp_y  = template_list[template]["y"]*1;
-    var temp_xr = template_list[template]["x"]*1 + template_list[template]["width"]*1;
-    var temp_yb = template_list[template]["y"]*1 + template_list[template]["height"]*1;
+  for(let i in template_list) {
+    var temp_x  = template_list[i]["x"]*1;
+    var temp_y  = template_list[i]["y"]*1;
+    var temp_xr = template_list[i]["x"]*1 + template_list[i]["width"]*1;
+    var temp_yb = template_list[i]["y"]*1 + template_list[i]["height"]*1;
     if ( temp_xr < x_left || temp_yb < y_top || temp_x >= x_right || temp_y >= y_bottom)
       continue;
-    //console.log(" Template " + template + " is in range!");
-    needed_templates.push(template);
+    needed_templates.push(template_list[i]);
   }
 
   if(needed_templates.length == 0){
@@ -382,7 +398,7 @@ function loadTemplates(){
     counter = 0;
 
     for(var i = 0; i < needed_templates.length; i++){
-      if(image_list[needed_templates[i]] == null){
+      if(image_list[needed_templates[i]["name"]] == null){
         loadImage(needed_templates[i]);
       } else {
         counter += 1;
@@ -394,14 +410,12 @@ function loadTemplates(){
   }
 }
 
-function loadImage(imagename){
-  console.log("    Load image " + imagename);
-  image_list[imagename] = new Image();
-  if(cachebreaker != null)
-    image_list[imagename].src = window.baseTepmlateUrl + "/images/" + template_list[imagename].name;
-  else
-    image_list[imagename].src = window.baseTepmlateUrl + "/images/" + template_list[imagename].name;
-  image_list[imagename].onload = function() {
+function loadImage(templatearray){
+  var imagepath = templatearray["name"];
+  console.log("    Load image " + imagepath);
+  image_list[imagepath] = new Image();
+  image_list[imagepath].src = "https://raw.githubusercontent.com/srdwly/llpixel/master/images/" + imagepath;
+  image_list[imagepath].onload = function() {
     counter += 1;
     // if last needed image loaded, start drawing
     if (counter == needed_templates.length)
@@ -416,11 +430,12 @@ function drawTemplates(){
   var i;
   for(i = 0; i < needed_templates.length; i++){
     var template = needed_templates[i];
-    var xoff = (template_list[template]["x"]*1 - x_left*1) * zoomlevel;
-    var yoff = (template_list[template]["y"]*1 - y_top*1) * zoomlevel;
-    var newwidth = zoomlevel * image_list[template].width;
-    var newheight = zoomlevel * image_list[template].height;
-    var img = image_list[template];
+    var filename = template["name"];
+    var xoff = (template["x"]*1 - x_left*1) * zoomlevel;
+    var yoff = (template["y"]*1 - y_top*1) * zoomlevel;
+    var newwidth = zoomlevel * image_list[filename].width;
+    var newheight = zoomlevel * image_list[filename].height;
+    var img = image_list[filename];
     ctx_minimap.drawImage(img, xoff, yoff, newwidth, newheight);
   }
 }
@@ -486,7 +501,7 @@ function findCoor(){
   // Loop and find the element with the right style attributes
   Array.prototype.forEach.call(elms, function(elm) {
     var style = elm.style.cssText;
-    if (style == "position: absolute; left: 1em; bottom: 1em;"){
+    if (style == "position: fixed; left: 1em; bottom: 1em;"){
       console.log("Found It!");
       coorDOM = elm.firstChild;
       console.log(coorDOM.innerHTML);
